@@ -45,6 +45,10 @@ export const useStyles = makeStyles(
                fontSize: 18,
                fontWeight: 'bold',
           },
+          formControl: {
+               margin: theme.spacing(1),
+               minWidth: 120,
+          },
           drawerPaper: {
                position: 'relative',
                whiteSpace: 'nowrap',

@@ -8,7 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useStyles } from '../hook/useStyles';
-import { formulario } from '../TableFormulario/formulario';
 
 const StyledTableCell = withStyles(
      (theme) => ({
@@ -92,25 +91,25 @@ const columns = [
      { field: 'mezzaLamella', headerName: 'mezza lamella' },
      { field: 'lamella', headerName: 'lamella' },
 ];
-export default function TableDistinte() {
+export default function TableDistinte({ rows }) {
      const theme = useTheme();
      const classes = useStyles(theme);
 
-     const [rows] = React.useState([
-          {
-               id: 0,
-               telaio: 3,
-               ante: 2,
-               base: 1000,
-               altezza: 1000,
-               antaB: formulario(1000)(1000)(3)(2)[1]['base'],
-               antaH: formulario(1000)(1000)(3)(2)[1]['altezza'],
-               fascione: formulario(1000)(1000)(3)(2)[2]['base'],
-               tAScatto: formulario(1000)(1000)(3)(2)[3]['altezza'],
-               mezzaLamella: '',
-               lamella: '',
-          },
-     ]);
+     // const [rows] = React.useState([
+     //      {
+     //           id: 0,
+     //           telaio: 3,
+     //           ante: 2,
+     //           base: 1000,
+     //           altezza: 1000,
+     //           antaB: formulario(1000)(1000)(3)(2)[1]['base'],
+     //           antaH: formulario(1000)(1000)(3)(2)[1]['altezza'],
+     //           fascione: formulario(1000)(1000)(3)(2)[2]['base'],
+     //           tAScatto: formulario(1000)(1000)(3)(2)[3]['altezza'],
+     //           mezzaLamella: '',
+     //           lamella: '',
+     //      },
+     // ]);
 
      return (
           <div>

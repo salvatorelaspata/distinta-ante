@@ -1,13 +1,21 @@
 import { Fab, Grid, Paper, useTheme } from '@material-ui/core';
 import clsx from 'clsx';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStyles } from '../components/hook/useStyles';
 import StandardContainer from '../components/layout/StandardContainer';
 import TableDistinte from '../components/TableDistinte/TableDistinte';
 import AddIcon from '@material-ui/icons/Add';
 import DialogAddDistinte from '../components/TableDistinte/DialogAddDistinte';
+import { getAllExpenses } from '../api';
 
 const Distinte = () => {
+     const [distinte, setDistinte] = useState([]);
+     useEffect(() => {
+          getAllExpenses.then((res) => {
+               setDistinte(res);
+               console.log(res);
+          });
+     }, []);
      const theme = useTheme();
      const classes = useStyles(theme);
 
@@ -26,7 +34,7 @@ const Distinte = () => {
                <StandardContainer>
                     <Grid item xs={12} md={12} lg={12}>
                          <Paper className={clsx(classes.paper)}>
-                              <TableDistinte />
+                              <TableDistinte rows={distinte} />
                          </Paper>
                     </Grid>
                </StandardContainer>
