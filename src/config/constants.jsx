@@ -13,18 +13,18 @@ import ToDo from "../pages/ToDo";
 import Drive from "../pages/Drive";
 
 export const ITEMS_MENU = (darkState, handleThemeChange) => [
-   // {
-   //    id: 1,
-   //    icon: <DashboardIcon />,
-   //    text: "Dashboassssrd",
-   //    path: "/",
-   //    component: (
-   //       <Dashboard
-   //          darkState={darkState}
-   //          handleThemeChange={handleThemeChange}
-   //       />
-   //    ),
-   // },
+   {
+      id: 0,
+      icon: <DashboardIcon />,
+      text: "Dashboasrd",
+      path: "/",
+      component: (
+         <Dashboard
+            darkState={darkState}
+            handleThemeChange={handleThemeChange}
+         />
+      ),
+   },
    {
       id: 1,
       path: "/Formulario",

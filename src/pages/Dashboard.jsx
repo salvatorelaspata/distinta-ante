@@ -17,38 +17,21 @@ const Dashboard = ({
                {/* Chart */}
                <Grid item xs={12} md={8} lg={9}>
                   <Paper className={fixedHeightPaper}>
-                     button
-                     <Button color="primary">Primary</Button>
-                     <Button color="secondary">Secondary</Button>
+                     Chart
                      {/* <Chart /> */}
                   </Paper>
                </Grid>
                {/* Recent Deposits */}
                <Grid item xs={12} md={4} lg={3}>
                   <Paper className={fixedHeightPaper}>
-                     chart
+                     Graph
                      {/* <Deposits /> */}
                   </Paper>
                </Grid>
                {/* Recent Orders */}
                <Grid item xs={12}>
                   <Paper className={classes.paper}>
-                     graph
-                     <Switch
-                        color="primary"
-                        checked={darkState}
-                        onChange={handleThemeChange}
-                     />
-                     <Switch
-                        color="secondary"
-                        checked={darkState}
-                        onChange={handleThemeChange}
-                     />
-                     <Switch
-                        color="default"
-                        checked={darkState}
-                        onChange={handleThemeChange}
-                     />
+                     Recent
                      {/* <Orders /> */}
                   </Paper>
                </Grid>

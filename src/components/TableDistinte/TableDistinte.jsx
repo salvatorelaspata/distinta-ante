@@ -1,6 +1,7 @@
 import * as React from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { formulario } from "../TableFormulario/formulario";
+import { Paper } from '@material-ui/core';
 // renderCell: renderRating,
 // renderEditCell: renderRatingEditInputCell,
 
@@ -125,6 +126,7 @@ function TableDistinte() {
             columns={columns}
             pageSize={10}
             checkboxSelection
+            components={Paper}
          />
       </div>
    );
