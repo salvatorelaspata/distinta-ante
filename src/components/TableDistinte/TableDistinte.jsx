@@ -89,7 +89,7 @@ const columns = [
 export default function TableDistinte() {
      const classes = useStyles();
 
-     const [rows, setRows] = React.useState([
+     const [rows] = React.useState([
           {
                id: 0,
                telaio: 3,
