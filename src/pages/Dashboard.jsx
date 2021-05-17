@@ -8,7 +8,7 @@ const Dashboard = () => {
    const classes = useStyles();
    const fixedHeightPaper = clsx(classes.paper);
    return (
-      <>
+      <div>
          <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>
                {/* Chart */}
@@ -37,7 +37,7 @@ const Dashboard = () => {
                <Copyright />
             </Box> */}
          </Container>
-      </>
+      </div>
    );
 };
 
