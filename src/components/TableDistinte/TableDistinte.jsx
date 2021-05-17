@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { useTheme, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -87,7 +87,8 @@ const columns = [
      { field: 'lamella', headerName: 'lamella' },
 ];
 export default function TableDistinte() {
-     const classes = useStyles();
+     const theme = useTheme();
+     const classes = useStyles(theme);
 
      const [rows] = React.useState([
           {
@@ -143,76 +144,3 @@ export default function TableDistinte() {
           </div>
      );
 }
-
-// function TableDistinte() {
-//    const [rows, setRows] = React.useState([
-//       {
-//          id: 0,
-//          telaio: 3,
-//          ante: 2,
-//          base: 1000,
-//          altezza: 1000,
-//          antaB: formulario(1000)(1000)(3)(2)[1]["base"],
-//          antaH: formulario(1000)(1000)(3)(2)[1]["altezza"],
-//          fascione: formulario(1000)(1000)(3)(2)[2]["base"],
-//          tAScatto: formulario(1000)(1000)(3)(2)[3]["altezza"],
-//          mezzaLamella: "",
-//          lamella: "",
-//       },
-//    ]);
-
-//    const handleEditCellChangeCommitted = React.useCallback(
-//       ({ id, field, props }) => {
-//          //ricalcolo la riga
-//          let f;
-//          const { value } = props;
-//          const updatedRows = rows.map((row) => {
-//             if (row.id === id) {
-//                if (field === "telaio") {
-//                   f = formulario(row.base)(row.altezza)(parseInt(value))(
-//                      row.ante
-//                   );
-//                } else if (field === "ante") {
-//                   f = formulario(row.base)(row.altezza)(row.telaio)(
-//                      parseInt(value)
-//                   );
-//                } else if (field === "base") {
-//                   f = formulario(parseInt(value))(row.altezza)(row.telaio)(
-//                      row.ante
-//                   );
-//                } else if (field === "altezza") {
-//                   f = formulario(row.base)(parseInt(value))(row.telaio)(
-//                      row.ante
-//                   );
-//                }
-//                return {
-//                   ...row,
-//                   [field]: parseInt(value),
-//                   antaB: f[1]["base"],
-//                   antaH: f[1]["altezza"],
-//                   fascione: f[2]["base"],
-//                   tAScatto: f[3]["altezza"],
-//                };
-//             }
-//             return row;
-//          });
-//          setRows(updatedRows);
-//       },
-//       [rows]
-//    );
-//    return (
-//       <div style={{ height: 400, width: "100%" }}>
-//          <DataGrid
-//             onEditCellChangeCommitted={handleEditCellChangeCommitted}
-//             isCell => params.row.telaio || params.row.ante}
-//             rows={rows}
-//             columns={columns}
-//             pageSize={10}
-//             checkboxSelection
-//             components={Paper}
-//          />
-//       </div>
-//    );
-// }
-
-// export default TableDistinte;
