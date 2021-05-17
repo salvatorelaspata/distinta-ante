@@ -1,16 +1,16 @@
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import PeopleIcon from "@material-ui/icons/People";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import LayersIcon from "@material-ui/icons/Layers";
-import PlaylistAddCheckIcon from "@material-ui/icons/PlaylistAddCheck";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+// import BarChartIcon from "@material-ui/icons/BarChart";
+// import LayersIcon from "@material-ui/icons/Layers";
+// import PlaylistAddCheckIcon from "@material-ui/icons/PlaylistAddCheck";
+// import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 import Dashboard from "../pages/Dashboard";
 import Formulario from "../pages/Formulario";
 import Distinte from "../pages/Distinte";
-import ToDo from "../pages/ToDo";
-import Drive from "../pages/Drive";
+// import ToDo from "../pages/ToDo";
+// import Drive from "../pages/Drive";
 
 export const ITEMS_MENU = (darkState, handleThemeChange) => [
    {

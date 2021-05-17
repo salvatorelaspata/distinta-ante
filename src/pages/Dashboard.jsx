@@ -1,13 +1,10 @@
 import React from "react";
-import { Button, Container, Grid, Paper, Switch } from "@material-ui/core";
+import {  Container, Grid, Paper } from "@material-ui/core";
 import clsx from "clsx";
 import { useStyles } from "../components/hook/useStyles";
 
 
-const Dashboard = ({
-   darkState,
-   handleThemeChange,
-}) => {
+const Dashboard = () => {
    const classes = useStyles();
    const fixedHeightPaper = clsx(classes.paper);
    return (
