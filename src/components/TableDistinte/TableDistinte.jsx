@@ -10,23 +10,29 @@ import Paper from '@material-ui/core/Paper';
 import { useStyles } from '../hook/useStyles';
 import { formulario } from '../TableFormulario/formulario';
 
-const StyledTableCell = withStyles((theme) => ({
-     head: {
-          backgroundColor: theme.palette.common.black,
-          color: theme.palette.common.white,
-     },
-     body: {
-          fontSize: 14,
-     },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-     root: {
-          '&:nth-of-type(odd)': {
-               backgroundColor: theme.palette.action.hover,
+const StyledTableCell = withStyles(
+     (theme) => ({
+          head: {
+               backgroundColor: theme.palette.common.black,
+               color: theme.palette.common.white,
           },
-     },
-}))(TableRow);
+          body: {
+               fontSize: 14,
+          },
+     }),
+     { index: 1 }
+)(TableCell);
+
+const StyledTableRow = withStyles(
+     (theme) => ({
+          root: {
+               '&:nth-of-type(odd)': {
+                    backgroundColor: theme.palette.action.hover,
+               },
+          },
+     }),
+     { index: 1 }
+)(TableRow);
 
 // function createData(tipo, base, altezza) {
 //    return { tipo, base, altezza };
