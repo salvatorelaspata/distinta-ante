@@ -1,6 +1,6 @@
 import { client, q } from '../config/db';
 
-export const getAllExpenses = client
+export const getAllDistinte = client
      .query(q.Paginate(q.Match(q.Ref('indexes/all_distinte'))))
      .then((response) => {
           const expenseRef = response.data;

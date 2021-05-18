@@ -1,4 +1,5 @@
-export const formulario = (b) => (h) => (l) => (a) => {
+export const formulario = (l) => (a) => (b) => (h) => {
+   console.log(l,a,b,h)
    const telaioB = b, telaioH = h;
    let antaB = 0, antaH= 0;
    let fascioneB= 0;

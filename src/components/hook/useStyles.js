@@ -47,7 +47,7 @@ export const useStyles = makeStyles(
           },
           formControl: {
                margin: theme.spacing(1),
-               minWidth: 120,
+               minWidth: '100%',
           },
           drawerPaper: {
                position: 'relative',
