@@ -6,7 +6,7 @@ import StandardContainer from "../components/layout/StandardContainer";
 import TableDistinte from "../components/TableDistinte/TableDistinte";
 import AddIcon from "@material-ui/icons/Add";
 import DialogAddDistinte from "../components/TableDistinte/DialogAddDistinte";
-import { getAllDistinte, createExpenseItem } from "../api";
+import { getAllDistinte } from "../api";
 
 //implementare valtio
 
@@ -29,11 +29,6 @@ const Distinte = () => {
    const handleClose = () => {
       setOpen(false);
    };
-
-   const handleCreate = (obj) => {
-      createExpenseItem(obj);
-   };
-
    return (
       <div>
          <StandardContainer>
@@ -53,11 +48,7 @@ const Distinte = () => {
             <AddIcon />
          </Fab>
          <Hidden>
-            <DialogAddDistinte
-               open={open}
-               handleClose={handleClose}
-               create={handleCreate}
-            />
+            <DialogAddDistinte open={open} handleClose={handleClose} />
          </Hidden>
       </div>
    );

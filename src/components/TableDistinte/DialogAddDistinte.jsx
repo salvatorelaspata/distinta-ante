@@ -44,6 +44,8 @@ function DialogAddDistinte({ open, handleClose }) {
       const { value, name } = event.target;
       state[name] = value;
    };
+
+   //solo salvataggio
    console.log("dialog");
    return (
       <div>
