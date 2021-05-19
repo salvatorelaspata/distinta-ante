@@ -11,7 +11,7 @@ export const getAllDistinte = client
      })
      .catch((error) => console.error('Error: ', error.message));
 
-export const createExpenseItem = ({
+export const createDistinteItem = ({
      id,
      telaio,
      ante,
