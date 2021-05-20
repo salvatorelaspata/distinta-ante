@@ -19,15 +19,14 @@ export const formulario = (l) => (a) => (b) => (h) => {
      }
      if (a === 2) {
           if (l === 3) {
-               antaB = (telaioB - 38) / 2;
                antaH = telaioH - 22;
                tAScattoH = antaH - 37;
           }
           if (l === 4) {
-               antaB = (telaioB - 35) / 2;
                antaH = telaioH - 30;
                tAScattoH = antaH - 74;
           }
+          antaB = (telaioB - 35) / 2;
           fascioneB = antaB - 132;
      }
      return [
