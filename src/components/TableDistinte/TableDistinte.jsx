@@ -6,7 +6,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import { useStyles } from '../hook/useStyles';
 
 const StyledTableCell = withStyles(
@@ -94,28 +93,15 @@ const columns = [
 export default function TableDistinte({ rows }) {
      const theme = useTheme();
      const classes = useStyles(theme);
-
-     // const [rows] = React.useState([
-     //      {
-     //           id: 0,
-     //           telaio: 3,
-     //           ante: 2,
-     //           base: 1000,
-     //           altezza: 1000,
-     //           antaB: formulario(1000)(1000)(3)(2)[1]['base'],
-     //           antaH: formulario(1000)(1000)(3)(2)[1]['altezza'],
-     //           fascione: formulario(1000)(1000)(3)(2)[2]['base'],
-     //           tAScatto: formulario(1000)(1000)(3)(2)[3]['altezza'],
-     //           mezzaLamella: '',
-     //           lamella: '',
-     //      },
-     // ]);
-
      return (
           <div>
                <span className={classes.subtitle}>Distinte</span>
-               <TableContainer component={Paper}>
-                    <Table className={classes.table} aria-label='simple table'>
+               <TableContainer style={{ maxHeight: 400 }}>
+                    <Table
+                         className={classes.table}
+                         stickyHeader
+                         aria-label='sticky table'
+                    >
                          <TableHead>
                               <TableRow>
                                    {columns.map((column) => {

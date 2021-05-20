@@ -58,19 +58,19 @@ const Formulario = () => {
                     </Grid>
                     <Grid item xs={12} md={12} lg={12}>
                          <Paper className={clsx(classes.paper)}>
+                              <Typography
+                                   component='h5'
+                                   variant='h5'
+                                   color='inherit'
+                                   noWrap
+                              >
+                                   Telaio su 3 lati
+                              </Typography>
                               <Grid
                                    container
                                    direction='row'
                                    justify='space-around'
                               >
-                                   <Typography
-                                        component='h6'
-                                        variant='h6'
-                                        color='inherit'
-                                        noWrap
-                                   >
-                                        Telaio su 3 lati
-                                   </Typography>
                                    <TableFormulario
                                         rows={rowsTelaio3Aula1(base)(altezza)}
                                         ante={1}
@@ -84,19 +84,19 @@ const Formulario = () => {
                     </Grid>
                     <Grid item xs={12} md={12} lg={12}>
                          <Paper className={clsx(classes.paper)}>
+                              <Typography
+                                   component='h5'
+                                   variant='h5'
+                                   color='inherit'
+                                   noWrap
+                              >
+                                   Telaio su 4 lati
+                              </Typography>
                               <Grid
                                    container
                                    direction='row'
                                    justify='space-around'
                               >
-                                   <Typography
-                                        component='h6'
-                                        variant='h6'
-                                        color='inherit'
-                                        noWrap
-                                   >
-                                        Telaio su 4 lati
-                                   </Typography>
                                    <TableFormulario
                                         rows={rowsTelaio4Aula1(base)(altezza)}
                                         ante={1}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
      Button,
      Dialog,
@@ -37,11 +37,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
      devtools(state, 'distinta'); // DEBUG
 }
 
-function DialogAddDistinte({ open, handleClose, getAll }) {
-     console.log('DialogAddDistinte');
-     useEffect(() => {
-          console.log('DialogAddDistinte:useEffect');
-     }, []);
+function DialogAddDistinte({ open, handleClose, updateList }) {
      const snapshot = useSnapshot(state, { sync: true });
      const theme = useTheme();
 
@@ -66,7 +62,6 @@ function DialogAddDistinte({ open, handleClose, getAll }) {
           )(parseInt(snapshot.ante))(parseInt(snapshot.base))(
                parseInt(snapshot.altezza)
           );
-          debugger;
           state.telaioB = telaio.base;
           state.telaioH = telaio.altezza;
           state.antaB = anta.base;
@@ -74,9 +69,9 @@ function DialogAddDistinte({ open, handleClose, getAll }) {
           state.fascione = fascione.base;
           state.tAScatto = tAScatto.altezza;
           createDistinteItem({ id: new Date().getTime(), ...state }).then(
-               () => {
-                    getAll();
+               (res) => {
                     handleClose();
+                    updateList(res);
                }
           );
      };
