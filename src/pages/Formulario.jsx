@@ -18,6 +18,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import TableFormularioDueAnte from "../components/TableFormulario/TableFormularioDueAnte";
 import Legend from "../components/Legend";
 
+import abImage from "./img/AB.png";
+import ilImage from "./img/IL.png";
+
 const rowsTelaio3Aula1 = formulario(3)(1);
 const rowsTelaio3Aula2 = formulario(3)(2);
 const rowsTelaio4Aula1 = formulario(4)(1);
@@ -128,9 +131,11 @@ const Formulario = () => {
                         <AccordionDetails>
                             <Grid
                                 container
-                                direction="row"
-                                justify="space-around"
+                                direction="column"
+                                justify="center"
+                                alignItems="center"
                             >
+                                <img src={ilImage} alt="IL" width="50%" />
                                 <TableFormularioDueAnte
                                     rows={
                                         rowsTelaio4Aula2(base)(altezza)(
@@ -149,15 +154,17 @@ const Formulario = () => {
                             aria-controls='2 ANTE "A & B"'
                         >
                             <Typography className={classes.heading}>
-                                2 ANTE "I & L"
+                                2 ANTE "A & B"
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Grid
                                 container
-                                direction="row"
-                                justify="space-around"
+                                direction="column"
+                                justify="center"
+                                alignItems="center"
                             >
+                                <img src={abImage} alt="AB" width="50%" />
                                 <TableFormularioDueAnte
                                     rows={
                                         rowsTelaio4Aula2(base)(altezza)(
