@@ -102,7 +102,7 @@ export const useStyles = makeStyles(
             position: 'absolute',
             bottom: theme.spacing(5),
             right: theme.spacing(5),
-        },
+        }
     }),
     { index: 1 }
 );

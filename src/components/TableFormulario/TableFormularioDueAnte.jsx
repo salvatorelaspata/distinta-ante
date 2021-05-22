@@ -8,7 +8,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { useStyles } from "../hook/useStyles";
-import { Typography } from "@material-ui/core";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -27,41 +26,47 @@ const StyledTableRow = withStyles((theme) => ({
         },
     },
 }))(TableRow);
-export default function TableFormulario({ rows, ante }) {
+
+export default function TableFormularioDueAnte({ rows }) {
     const theme = useTheme();
     const classes = useStyles(theme);
 
-    rows = rows.slice(0, 6);
-
     return (
         <div>
-            <Typography component="h6" variant="h6" color="inherit" noWrap>
-                {ante} Anta
-            </Typography>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell>Tipo</StyledTableCell>
-                            <StyledTableCell align="right">
-                                Base (cm)
+                            <StyledTableCell align="left">
+                                Base maniglia (cm)
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                                Tipo
                             </StyledTableCell>
                             <StyledTableCell align="right">
-                                Altezza (cm)
+                                Base laterale (cm)
                             </StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
+                        {/* 
+                        let dueAnte = [
+                            { name: 'Anta', baseManiglia: 0, baseLaterale: 0} ,
+                            { name: 'Fascione', baseManiglia: 0, baseLaterale: 0 },
+                            { name: 'Mezza Lamella', baseManiglia: 0, baseLaterale: 0 },
+                            { name: 'Lamella', baseManiglia: 0, baseLaterale: 0 },
+                        ]
+                        */}
                         {rows.map((row) => (
-                            <StyledTableRow key={row.tipo}>
+                            <StyledTableRow key={row.name}>
                                 <StyledTableCell component="th" scope="row">
-                                    {row.tipo}
+                                    {row.baseManiglia}
+                                </StyledTableCell>
+                                <StyledTableCell align="center">
+                                    {row.name}
                                 </StyledTableCell>
                                 <StyledTableCell align="right">
-                                    {row.base}
-                                </StyledTableCell>
-                                <StyledTableCell align="right">
-                                    {row.altezza}
+                                    {row.baseLaterale}
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
     Grid,
     Paper,
@@ -8,13 +8,15 @@ import {
     Accordion,
     AccordionSummary,
     AccordionDetails,
-} from '@material-ui/core';
-import clsx from 'clsx';
-import { useStyles } from '../components/hook/useStyles';
-import StandardContainer from '../components/layout/StandardContainer';
-import TableFormulario from '../components/TableFormulario/TableFormulario';
-import { formulario } from '../components/hook/formulario';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+} from "@material-ui/core";
+import clsx from "clsx";
+import { useStyles } from "../components/hook/useStyles";
+import StandardContainer from "../components/layout/StandardContainer";
+import TableFormulario from "../components/TableFormulario/TableFormulario";
+import { formulario } from "../components/hook/formulario";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import TableFormularioDueAnte from "../components/TableFormulario/TableFormularioDueAnte";
+import Legend from "../components/Legend";
 
 const rowsTelaio3Aula1 = formulario(3)(1);
 const rowsTelaio3Aula2 = formulario(3)(2);
@@ -33,24 +35,25 @@ const Formulario = () => {
             <StandardContainer>
                 <Grid item xs={12} md={12} lg={12}>
                     <Paper className={clsx(classes.paper)}>
-                        <form noValidate autoComplete='off'>
+                        <form noValidate autoComplete="off">
                             <Grid
                                 container
-                                direction='row'
-                                justify='space-around'
+                                direction="row"
+                                justify="space-around"
                             >
                                 <TextField
-                                    label='Base'
-                                    variant='outlined'
+                                    label="Base"
+                                    variant="outlined"
                                     onChange={(e) => setBase(e.target.value)}
                                     value={base}
                                 />
                                 <TextField
-                                    label='Altezza'
-                                    variant='outlined'
+                                    label="Altezza"
+                                    variant="outlined"
                                     onChange={(e) => setAltezza(e.target.value)}
                                     value={altezza}
                                 />
+                                <Legend />
                             </Grid>
                         </form>
                     </Paper>
@@ -59,8 +62,7 @@ const Formulario = () => {
                     <Accordion>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
-                            aria-controls='panel1a-content'
-                            id='panel1a-header'
+                            aria-controls="Telaio su 3 lati"
                         >
                             <Typography className={classes.heading}>
                                 Telaio su 3 lati
@@ -69,15 +71,15 @@ const Formulario = () => {
                         <AccordionDetails>
                             <Grid
                                 container
-                                direction='row'
-                                justify='space-around'
+                                direction="row"
+                                justify="space-around"
                             >
                                 <TableFormulario
-                                    rows={rowsTelaio3Aula1(base)(altezza)}
+                                    rows={rowsTelaio3Aula1(base)(altezza)()}
                                     ante={1}
                                 />
                                 <TableFormulario
-                                    rows={rowsTelaio3Aula2(base)(altezza)}
+                                    rows={rowsTelaio3Aula2(base)(altezza)()}
                                     ante={2}
                                 />
                             </Grid>
@@ -88,8 +90,7 @@ const Formulario = () => {
                     <Accordion>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
-                            aria-controls='panel1a-content'
-                            id='panel1a-header'
+                            aria-controls="Telaio su 4 lati"
                         >
                             <Typography className={classes.heading}>
                                 Telaio su 4 lati
@@ -98,16 +99,71 @@ const Formulario = () => {
                         <AccordionDetails>
                             <Grid
                                 container
-                                direction='row'
-                                justify='space-around'
+                                direction="row"
+                                justify="space-around"
                             >
                                 <TableFormulario
-                                    rows={rowsTelaio4Aula1(base)(altezza)}
+                                    rows={rowsTelaio4Aula1(base)(altezza)()}
                                     ante={1}
                                 />
                                 <TableFormulario
-                                    rows={rowsTelaio4Aula2(base)(altezza)}
+                                    rows={rowsTelaio4Aula2(base)(altezza)()}
                                     ante={2}
+                                />
+                            </Grid>
+                        </AccordionDetails>
+                    </Accordion>
+                </Grid>
+
+                <Grid item xs={12} md={6} lg={6}>
+                    <Accordion defaultExpanded={true}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls='2 ANTE "I & L"'
+                        >
+                            <Typography className={classes.heading}>
+                                2 ANTE "I & L"
+                            </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Grid
+                                container
+                                direction="row"
+                                justify="space-around"
+                            >
+                                <TableFormularioDueAnte
+                                    rows={
+                                        rowsTelaio4Aula2(base)(altezza)(
+                                            "i"
+                                        ).slice(6, 7)[0]
+                                    }
+                                />
+                            </Grid>
+                        </AccordionDetails>
+                    </Accordion>
+                </Grid>
+                <Grid item xs={12} md={6} lg={6}>
+                    <Accordion defaultExpanded={true}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls='2 ANTE "A & B"'
+                        >
+                            <Typography className={classes.heading}>
+                                2 ANTE "I & L"
+                            </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Grid
+                                container
+                                direction="row"
+                                justify="space-around"
+                            >
+                                <TableFormularioDueAnte
+                                    rows={
+                                        rowsTelaio4Aula2(base)(altezza)(
+                                            "a"
+                                        ).slice(6, 7)[0]
+                                    }
                                 />
                             </Grid>
                         </AccordionDetails>
