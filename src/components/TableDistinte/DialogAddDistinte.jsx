@@ -6,9 +6,9 @@ import {
     DialogContent,
     DialogTitle,
     FormControl,
+    Grid,
     Input,
     InputLabel,
-    Select,
 } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
@@ -19,9 +19,12 @@ import { devtools } from "valtio/utils";
 import { formulario } from "../hook/formulario";
 import TableFormulario from "../TableFormulario/TableFormulario";
 import { createDistinteItem } from "../../api";
+import SelectOutlined from "../Input/SelectOutlined";
+import clsx from "clsx";
 const state = proxy({
     telaio: null,
     ante: null,
+    tipo: null,
     base: null,
     altezza: null,
     telaioB: null,
@@ -83,7 +86,12 @@ function DialogAddDistinte({ open, handleClose, updateList }) {
             }
         }
     };
-
+    // Proporrei di schematizzare secondo:
+    // - Posizione (che sarà automatica in funzione alle righe)
+    // - pezzi per ogni posizione (solitamente è 1 ma potrebbero essere più di uno)(in questo caso non so a cosa potrebbe servire ma magari potremmo inserirlo per poi aggiungere in un secondo momento qualche funzione)
+    // - numero di ante
+    // - scelta della lettera (scelta opzionabile in 2 ante e obbligatoria in 3 o 4 ante)
+    // - inserimento misure esterne telaio (base e altezza).
     return (
         <div>
             <Dialog
@@ -97,76 +105,65 @@ function DialogAddDistinte({ open, handleClose, updateList }) {
                     {"Inserisci distinta"}
                 </DialogTitle>
                 <DialogContent>
-                    <div>
-                        <FormControl
-                            variant="outlined"
-                            className={classes.formControl}
-                        >
-                            <InputLabel htmlFor="outlined-telaio-native-simple">
-                                Telaio
-                            </InputLabel>
-                            <Select
-                                native
-                                value={snapshot.telaio || ""}
-                                onChange={handleChange}
-                                label="Telaio"
-                                name="telaio"
-                            >
-                                <option aria-label="None" value="" />
-                                <option value={3}>3</option>
-                                <option value={4}>4</option>
-                            </Select>
-                        </FormControl>
-                        <FormControl
-                            variant="outlined"
-                            className={classes.formControl}
-                        >
-                            <InputLabel htmlFor="outlined-telaio-native-simple">
-                                Ante
-                            </InputLabel>
-                            <Select
-                                native
-                                value={snapshot.ante || ""}
-                                onChange={handleChange}
-                                label="Ante"
-                                name="ante"
-                            >
-                                <option aria-label="None" value="" />
-                                <option value={1}>1</option>
-                                <option value={2}>2</option>
-                            </Select>
-                        </FormControl>
-                    </div>
-                    <div>
-                        <FormControl
-                            variant="outlined"
-                            className={classes.formControl}
-                        >
-                            <InputLabel htmlFor="outlined-telaio-native-simple">
-                                Base
-                            </InputLabel>
-                            <Input
-                                type="Number"
-                                name="base"
-                                onChange={handleChange}
-                                value={snapshot.base || ""}
-                            />
-                        </FormControl>
-                        <FormControl
-                            variant="outlined"
-                            className={classes.formControl}
-                        >
-                            <InputLabel htmlFor="outlined-telaio-native-simple">
-                                Altezza
-                            </InputLabel>
-                            <Input
-                                type="Number"
-                                name="altezza"
-                                value={snapshot.altezza || ""}
-                                onChange={handleChange}
-                            />
-                        </FormControl>
-                    </div>
+                    <SelectOutlined
+                        handleChange={handleChange}
+                        label="Telaio"
+                        value={snapshot.telaio || ""}
+                        options={[
+                            { key: 3, value: "Telaio a 3 lati" },
+                            { key: 4, value: "Telaio a 4 lati" },
+                        ]}
+                    />
+                    <SelectOutlined
+                        handleChange={handleChange}
+                        label="Ante"
+                        value={snapshot.ante || ""}
+                        options={[
+                            { key: 1, value: "1 Anta" },
+                            { key: 2, value: "2 Anta" },
+                        ]}
+                    />
+
+                    <SelectOutlined
+                        className={clsx(
+                            parseInt(snapshot.ante) !== 2 && classes.none
+                        )}
+                        handleChange={handleChange}
+                        label="Tipo"
+                        value={snapshot.tipo || ""}
+                        options={[
+                            { key: "a", value: '2 ANTE "A & B"' },
+                            { key: "i", value: '2 ANTE "I & L"' },
+                        ]}
+                    />
+                    <FormControl
+                        variant="outlined"
+                        className={classes.formControl}
+                    >
+                        <InputLabel htmlFor="outlined-telaio-native-simple">
+                            Base
+                        </InputLabel>
+                        <Input
+                            type="Number"
+                            name="base"
+                            onChange={handleChange}
+                            value={snapshot.base || ""}
+                        />
+                    </FormControl>
+                    <FormControl
+                        variant="outlined"
+                        className={classes.formControl}
+                    >
+                        <InputLabel htmlFor="outlined-telaio-native-simple">
+                            Altezza
+                        </InputLabel>
+                        <Input
+                            type="Number"
+                            name="altezza"
+                            value={snapshot.altezza || ""}
+                            onChange={handleChange}
+                        />
+                    </FormControl>
                     {snapshot.telaio &&
                     snapshot.ante &&
                     snapshot.base &&
