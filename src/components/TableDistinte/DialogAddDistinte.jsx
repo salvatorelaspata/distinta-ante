@@ -105,65 +105,70 @@ function DialogAddDistinte({ open, handleClose, updateList }) {
                     {"Inserisci distinta"}
                 </DialogTitle>
                 <DialogContent>
-                    <SelectOutlined
-                        handleChange={handleChange}
-                        label="Telaio"
-                        value={snapshot.telaio || ""}
-                        options={[
-                            { key: 3, value: "Telaio a 3 lati" },
-                            { key: 4, value: "Telaio a 4 lati" },
-                        ]}
-                    />
-                    <SelectOutlined
-                        handleChange={handleChange}
-                        label="Ante"
-                        value={snapshot.ante || ""}
-                        options={[
-                            { key: 1, value: "1 Anta" },
-                            { key: 2, value: "2 Anta" },
-                        ]}
-                    />
+                    <Grid container justify="space-between">
+                        <SelectOutlined
+                            handleChange={handleChange}
+                            label="Telaio"
+                            value={snapshot.telaio || ""}
+                            options={[
+                                { key: 3, value: "Telaio a 3 lati" },
+                                { key: 4, value: "Telaio a 4 lati" },
+                            ]}
+                        />
+                        <SelectOutlined
+                            handleChange={handleChange}
+                            label="Ante"
+                            value={snapshot.ante || ""}
+                            options={[
+                                { key: 1, value: "1 Anta" },
+                                { key: 2, value: "2 Anta" },
+                            ]}
+                        />
 
-                    <SelectOutlined
-                        className={clsx(
-                            parseInt(snapshot.ante) !== 2 && classes.none
-                        )}
-                        handleChange={handleChange}
-                        label="Tipo"
-                        value={snapshot.tipo || ""}
-                        options={[
-                            { key: "a", value: '2 ANTE "A & B"' },
-                            { key: "i", value: '2 ANTE "I & L"' },
-                        ]}
-                    />
-                    <FormControl
-                        variant="outlined"
-                        className={classes.formControl}
-                    >
-                        <InputLabel htmlFor="outlined-telaio-native-simple">
-                            Base
-                        </InputLabel>
-                        <Input
-                            type="Number"
-                            name="base"
-                            onChange={handleChange}
-                            value={snapshot.base || ""}
+                        <SelectOutlined
+                            className={clsx(
+                                parseInt(snapshot.ante) !== 2 && classes.none
+                            )}
+                            handleChange={handleChange}
+                            label="Tipo"
+                            value={snapshot.tipo || ""}
+                            options={[
+                                { key: "a", value: '2 ANTE "A & B"' },
+                                { key: "i", value: '2 ANTE "I & L"' },
+                            ]}
                         />
-                    </FormControl>
-                    <FormControl
-                        variant="outlined"
-                        className={classes.formControl}
-                    >
-                        <InputLabel htmlFor="outlined-telaio-native-simple">
-                            Altezza
-                        </InputLabel>
-                        <Input
-                            type="Number"
-                            name="altezza"
-                            value={snapshot.altezza || ""}
-                            onChange={handleChange}
-                        />
-                    </FormControl>
+                    </Grid>
+
+                    <Grid container justify="space-between">
+                        <FormControl
+                            variant="outlined"
+                            className={classes.formControl}
+                        >
+                            <InputLabel htmlFor="outlined-telaio-native-simple">
+                                Base
+                            </InputLabel>
+                            <Input
+                                type="Number"
+                                name="base"
+                                onChange={handleChange}
+                                value={snapshot.base || ""}
+                            />
+                        </FormControl>
+                        <FormControl
+                            variant="outlined"
+                            className={classes.formControl}
+                        >
+                            <InputLabel htmlFor="outlined-telaio-native-simple">
+                                Altezza
+                            </InputLabel>
+                            <Input
+                                type="Number"
+                                name="altezza"
+                                value={snapshot.altezza || ""}
+                                onChange={handleChange}
+                            />
+                        </FormControl>
+                    </Grid>
                     {snapshot.telaio &&
                     snapshot.ante &&
                     snapshot.base &&

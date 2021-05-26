@@ -11,8 +11,12 @@ function useDistinte(defaultDistinte = [], defaultOpen = false) {
     }); */
     useEffect(() => {
         getAllDistinte.then((res) => {
-            const all = res.map((r) => r.data);
-            setDistinte(all);
+            if(res){
+                const all = res.map((r) => r.data);
+                setDistinte(all);
+            }else{
+                setDistinte([])
+            }
         });
     }, []);
 
