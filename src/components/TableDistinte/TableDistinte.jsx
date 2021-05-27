@@ -9,27 +9,27 @@ import TableRow from '@material-ui/core/TableRow';
 import { useStyles } from '../hook/useStyles';
 
 const StyledTableCell = withStyles(
-     (theme) => ({
-          head: {
-               backgroundColor: theme.palette.common.black,
-               color: theme.palette.common.white,
-          },
-          body: {
-               fontSize: 14,
-          },
-     }),
-     { index: 1 }
+    (theme) => ({
+        head: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+        },
+        body: {
+            fontSize: 14,
+        },
+    }),
+    { index: 1 }
 )(TableCell);
 
 const StyledTableRow = withStyles(
-     (theme) => ({
-          root: {
-               '&:nth-of-type(odd)': {
-                    backgroundColor: theme.palette.action.hover,
-               },
-          },
-     }),
-     { index: 1 }
+    (theme) => ({
+        root: {
+            '&:nth-of-type(odd)': {
+                backgroundColor: theme.palette.action.hover,
+            },
+        },
+    }),
+    { index: 1 }
 )(TableRow);
 
 // function createData(tipo, base, altezza) {
@@ -43,95 +43,93 @@ const StyledTableRow = withStyles(
 //    createData("T A SCATTO", 305, 3.7),
 // ];
 const columns = [
-     { field: 'id', headerName: 'ID', width: 70 },
-     {
-          field: 'telaio',
-          headerName: 'Telaio',
-          type: 'number',
-          width: 90,
-     },
-     {
-          field: 'ante',
-          headerName: 'Ante',
+    { field: 'id', headerName: 'ID', width: 70 },
+    {
+        field: 'telaio',
+        headerName: 'Telaio',
+        type: 'number',
+        width: 90,
+    },
+    {
+        field: 'ante',
+        headerName: 'Ante',
 
-          type: 'number',
-          width: 90,
-     },
-     {
-          field: 'base',
-          headerName: 'BASE',
-          width: 150,
-     },
-     {
-          field: 'altezza',
-          headerName: 'ALTEZZA',
-          width: 150,
-     },
-     {
-          field: 'antaB',
-          headerName: 'anta BASE',
-          width: 140,
-     },
-     {
-          field: 'antaH',
-          headerName: 'anta ALTEZZA',
-          width: 150,
-     },
-     {
-          field: 'fascione',
-          headerName: 'Fascione',
-          width: 130,
-     },
-     {
-          field: 'tAScatto',
-          headerName: 'T a scatto',
-          width: 130,
-     },
-     { field: 'mezzaLamella', headerName: 'mezza lamella' },
-     { field: 'lamella', headerName: 'lamella' },
+        type: 'number',
+        width: 90,
+    },
+    {
+        field: 'base',
+        headerName: 'BASE',
+        width: 150,
+    },
+    {
+        field: 'altezza',
+        headerName: 'ALTEZZA',
+        width: 150,
+    },
+    {
+        field: 'antaB',
+        headerName: 'anta BASE',
+        width: 140,
+    },
+    {
+        field: 'antaH',
+        headerName: 'anta ALTEZZA',
+        width: 150,
+    },
+    {
+        field: 'fascione',
+        headerName: 'Fascione',
+        width: 130,
+    },
+    {
+        field: 'tAScatto',
+        headerName: 'T a scatto',
+        width: 130,
+    },
+    { field: 'mezzaLamella', headerName: 'mezza lamella' },
+    { field: 'lamella', headerName: 'lamella' },
 ];
 export default function TableDistinte({ rows }) {
-     const theme = useTheme();
-     const classes = useStyles(theme);
-     return (
-          <div>
-               <span className={classes.subtitle}>Distinte</span>
-               <TableContainer style={{ maxHeight: 400 }}>
-                    <Table
-                         className={classes.table}
-                         stickyHeader
-                         aria-label='sticky table'
-                    >
-                         <TableHead>
-                              <TableRow>
-                                   {columns.map((column) => {
-                                        return (
-                                             <StyledTableCell
-                                                  key={column.field}
-                                             >
-                                                  {column.headerName}
-                                             </StyledTableCell>
-                                        );
-                                   })}
-                              </TableRow>
-                         </TableHead>
-                         <TableBody>
-                              {rows.map((row) => (
-                                   <StyledTableRow key={row.id}>
-                                        {columns.map((column) => {
-                                             return (
-                                                  <StyledTableCell
-                                                       key={`rows_${column.field}`}
-                                                  >
-                                                       {row[column.field]}
-                                                  </StyledTableCell>
-                                             );
-                                        })}
-                                   </StyledTableRow>
-                              ))}
-                         </TableBody>
-                    </Table>
-               </TableContainer>
-          </div>
-     );
+    const theme = useTheme();
+    const classes = useStyles(theme);
+    return (
+        <div>
+            <span className={classes.subtitle}>Distinte</span>
+            <TableContainer style={{ maxHeight: 400 }}>
+                <Table
+                    className={classes.table}
+                    stickyHeader
+                    aria-label='sticky table'
+                >
+                    <TableHead>
+                        <TableRow>
+                            {columns.map((column) => {
+                                return (
+                                    <StyledTableCell key={column.field}>
+                                        {column.headerName}
+                                    </StyledTableCell>
+                                );
+                            })}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row) => (
+                            <StyledTableRow key={row.id}>
+                                {columns.map((column) => {
+                                    return (
+                                        <StyledTableCell
+                                            key={`rows_${column.field}`}
+                                        >
+                                            {row[column.field]}
+                                        </StyledTableCell>
+                                    );
+                                })}
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
+    );
 }

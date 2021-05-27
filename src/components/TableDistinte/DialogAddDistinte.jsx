@@ -1,26 +1,22 @@
-import React from "react";
+import React from 'react';
 import {
     Button,
     Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
-    FormControl,
     Grid,
-    Input,
-    InputLabel,
-} from "@material-ui/core";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
-import { useStyles } from "../hook/useStyles";
+} from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
-import { proxy, useSnapshot } from "valtio";
-import { devtools } from "valtio/utils";
-import { formulario } from "../hook/formulario";
-import TableFormulario from "../TableFormulario/TableFormulario";
-import { createDistinteItem } from "../../api";
-import SelectOutlined from "../Input/SelectOutlined";
-import clsx from "clsx";
+import { proxy, useSnapshot } from 'valtio';
+import { devtools } from 'valtio/utils';
+import { formulario } from '../hook/formulario';
+import TableFormulario from '../TableFormulario/TableFormulario';
+import { createDistinteItem } from '../../api';
+import SelectOutlined from '../Input/SelectOutlined';
+import InputOutlined from '../Input/InputOutlined';
 const state = proxy({
     telaio: null,
     ante: null,
@@ -36,20 +32,19 @@ const state = proxy({
     mezzaLamella: null,
     lamella: null,
 });
-if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-    devtools(state, "distinta"); // DEBUG
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    devtools(state, 'distinta'); // DEBUG
 }
 
 function DialogAddDistinte({ open, handleClose, updateList }) {
     const snapshot = useSnapshot(state, { sync: true });
     const theme = useTheme();
-
-    const classes = useStyles(theme);
-    const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleChange = (event) => {
         const { value, name } = event.target;
         state[name] = value;
+        console.log(state);
     };
 
     const handleSave = () => {
@@ -98,82 +93,66 @@ function DialogAddDistinte({ open, handleClose, updateList }) {
                 fullScreen={fullScreen}
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="responsive-dialog-title"
+                aria-labelledby='responsive-dialog-title'
                 onEnter={handleEnter}
             >
-                <DialogTitle id="responsive-dialog-title">
-                    {"Inserisci distinta"}
+                <DialogTitle id='responsive-dialog-title'>
+                    {'Inserisci distinta'}
                 </DialogTitle>
                 <DialogContent>
-                    <Grid container justify="space-between">
+                    <Grid container justify='space-between'>
                         <SelectOutlined
                             handleChange={handleChange}
-                            label="Telaio"
-                            value={snapshot.telaio || ""}
+                            label='Telaio'
+                            value={snapshot.telaio || ''}
                             options={[
-                                { key: 3, value: "Telaio a 3 lati" },
-                                { key: 4, value: "Telaio a 4 lati" },
+                                { key: 3, value: 'Telaio a 3 lati' },
+                                { key: 4, value: 'Telaio a 4 lati' },
                             ]}
                         />
                         <SelectOutlined
                             handleChange={handleChange}
-                            label="Ante"
-                            value={snapshot.ante || ""}
+                            label='Ante'
+                            value={snapshot.ante || ''}
                             options={[
-                                { key: 1, value: "1 Anta" },
-                                { key: 2, value: "2 Anta" },
+                                { key: 1, value: '1 Anta' },
+                                { key: 2, value: '2 Anta' },
                             ]}
                         />
 
                         <SelectOutlined
-                            className={clsx(
-                                parseInt(snapshot.ante) !== 2 && classes.none
-                            )}
                             handleChange={handleChange}
-                            label="Tipo"
-                            value={snapshot.tipo || ""}
+                            label='Tipo'
+                            value={snapshot.tipo || ''}
                             options={[
-                                { key: "a", value: '2 ANTE "A & B"' },
-                                { key: "i", value: '2 ANTE "I & L"' },
+                                { key: 'a', value: '2 ANTE "A & B"' },
+                                { key: 'i', value: '2 ANTE "I & L"' },
                             ]}
+                            visible={parseInt(snapshot.ante) >= 2}
                         />
                     </Grid>
 
-                    <Grid container justify="space-between">
-                        <FormControl
-                            variant="outlined"
-                            className={classes.formControl}
-                        >
-                            <InputLabel htmlFor="outlined-telaio-native-simple">
-                                Base
-                            </InputLabel>
-                            <Input
-                                type="Number"
-                                name="base"
-                                onChange={handleChange}
-                                value={snapshot.base || ""}
-                            />
-                        </FormControl>
-                        <FormControl
-                            variant="outlined"
-                            className={classes.formControl}
-                        >
-                            <InputLabel htmlFor="outlined-telaio-native-simple">
-                                Altezza
-                            </InputLabel>
-                            <Input
-                                type="Number"
-                                name="altezza"
-                                value={snapshot.altezza || ""}
-                                onChange={handleChange}
-                            />
-                        </FormControl>
+                    <Grid container justify='space-between'>
+                        <InputOutlined
+                            handleChange={handleChange}
+                            type='Number'
+                            label='Base'
+                            name='base'
+                            value={snapshot.base}
+                        />
+                        <InputOutlined
+                            handleChange={handleChange}
+                            type='Number'
+                            label='Altezza'
+                            name='altezza'
+                            value={snapshot.altezza}
+                        />
                     </Grid>
                     {snapshot.telaio &&
                     snapshot.ante &&
                     snapshot.base &&
                     snapshot.altezza ? (
-                        <div style={{ marginTop: "2rem" }}>
+                        <div style={{ marginTop: '2rem' }}>
                             <TableFormulario
                                 rows={formulario(parseInt(snapshot.telaio))(
                                     parseInt(snapshot.ante)
@@ -187,10 +166,10 @@ function DialogAddDistinte({ open, handleClose, updateList }) {
                 </DialogContent>
 
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose} color="secondary">
+                    <Button autoFocus onClick={handleClose} color='secondary'>
                         Annulla
                     </Button>
-                    <Button onClick={handleSave} color="primary" autoFocus>
+                    <Button onClick={handleSave} color='primary' autoFocus>
                         Salva
                     </Button>
                 </DialogActions>

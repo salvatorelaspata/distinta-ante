@@ -1,13 +1,23 @@
-import React from "react";
-import { FormControl, InputLabel, Select, useTheme } from "@material-ui/core";
-import { useStyles } from "../hook/useStyles";
+import React from 'react';
+import { FormControl, InputLabel, Select, useTheme } from '@material-ui/core';
+import { useStyles } from '../hook/useStyles';
+import clsx from 'clsx';
 
-const SelectOutlined = ({ label, value, handleChange, options, classname }) => {
+const SelectOutlined = ({
+    label,
+    value,
+    handleChange,
+    options,
+    visible = true,
+}) => {
     const theme = useTheme();
     const classes = useStyles(theme);
     return (
-        <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel htmlFor="outlined-telaio-native-simple">
+        <FormControl
+            variant='outlined'
+            className={clsx(!visible && classes.none, classes.formControl)}
+        >
+            <InputLabel htmlFor='outlined-telaio-native-simple'>
                 {label}
             </InputLabel>
             <Select
@@ -17,7 +27,7 @@ const SelectOutlined = ({ label, value, handleChange, options, classname }) => {
                 label={label}
                 name={label.toLowerCase()}
             >
-                <option aria-label="None" value="" />
+                <option aria-label='None' value='' />
                 {options &&
                     options.map((o) => {
                         return (
