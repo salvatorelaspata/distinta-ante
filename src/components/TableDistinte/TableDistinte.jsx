@@ -32,65 +32,8 @@ const StyledTableRow = withStyles(
     { index: 1 }
 )(TableRow);
 
-// function createData(tipo, base, altezza) {
-//    return { tipo, base, altezza };
-// }
-
-// const rows = [
-//    createData("TELAIO", 159, 6.0),
-//    createData("ANTA", 237, 9.0),
-//    createData("FASCIONE", 262, 16.0),
-//    createData("T A SCATTO", 305, 3.7),
-// ];
-const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    {
-        field: 'telaio',
-        headerName: 'Telaio',
-        type: 'number',
-        width: 90,
-    },
-    {
-        field: 'ante',
-        headerName: 'Ante',
-
-        type: 'number',
-        width: 90,
-    },
-    {
-        field: 'base',
-        headerName: 'BASE',
-        width: 150,
-    },
-    {
-        field: 'altezza',
-        headerName: 'ALTEZZA',
-        width: 150,
-    },
-    {
-        field: 'antaB',
-        headerName: 'anta BASE',
-        width: 140,
-    },
-    {
-        field: 'antaH',
-        headerName: 'anta ALTEZZA',
-        width: 150,
-    },
-    {
-        field: 'fascione',
-        headerName: 'Fascione',
-        width: 130,
-    },
-    {
-        field: 'tAScatto',
-        headerName: 'T a scatto',
-        width: 130,
-    },
-    { field: 'mezzaLamella', headerName: 'mezza lamella' },
-    { field: 'lamella', headerName: 'lamella' },
-];
 export default function TableDistinte({ rows }) {
+    console.log(rows);
     const theme = useTheme();
     const classes = useStyles(theme);
     return (
@@ -104,29 +47,97 @@ export default function TableDistinte({ rows }) {
                 >
                     <TableHead>
                         <TableRow>
-                            {columns.map((column) => {
-                                return (
-                                    <StyledTableCell key={column.field}>
-                                        {column.headerName}
-                                    </StyledTableCell>
-                                );
-                            })}
+                            <StyledTableCell width={60}>Pos.</StyledTableCell>
+                            <StyledTableCell width={60}>Pz.</StyledTableCell>
+                            <StyledTableCell width={60}>Telaio</StyledTableCell>
+                            <StyledTableCell width={80}>n Ante</StyledTableCell>
+                            <StyledTableCell
+                                width={120}
+                                colSpan={2}
+                                align='center'
+                            >
+                                Misure esterno telaio (mm)
+                            </StyledTableCell>
+                            <StyledTableCell colSpan={2} align='center'>
+                                Ante (mm)
+                            </StyledTableCell>
+                            <StyledTableCell colSpan={2} align='center'>
+                                Fascione (mm)
+                            </StyledTableCell>
+                            <StyledTableCell colSpan={2} align='center'>
+                                Mezza Labella (mm)
+                            </StyledTableCell>
+                            <StyledTableCell colSpan={2} align='center'>
+                                Labella (mm)
+                            </StyledTableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell colSpan={4} />
+                            <TableCell align='left'>Base</TableCell>
+                            <TableCell align='right'>Altezza</TableCell>
+                            <TableCell align='left'>Maniglia</TableCell>
+                            <TableCell align='right'>Laterale</TableCell>
+                            <TableCell align='left'>Maniglia</TableCell>
+                            <TableCell align='right'>Laterale</TableCell>
+                            <TableCell align='left'>Maniglia</TableCell>
+                            <TableCell align='right'>Laterale</TableCell>
+                            <TableCell align='left'>Maniglia</TableCell>
+                            <TableCell align='right'>Laterale</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <StyledTableRow key={row.id}>
-                                {columns.map((column) => {
-                                    return (
-                                        <StyledTableCell
-                                            key={`rows_${column.field}`}
-                                        >
-                                            {row[column.field]}
-                                        </StyledTableCell>
-                                    );
-                                })}
-                            </StyledTableRow>
-                        ))}
+                        {rows.map(
+                            (
+                                {
+                                    pz,
+                                    telaio,
+                                    nAnte,
+                                    misureEsternotelaio,
+                                    ante,
+                                    fascione,
+                                    mezzaLamella,
+                                    lamella,
+                                },
+                                index
+                            ) => (
+                                <StyledTableRow key={index}>
+                                    <TableCell>{index + 1}</TableCell>
+                                    <TableCell>{pz}</TableCell>
+                                    <TableCell>{telaio}</TableCell>
+                                    <TableCell>{nAnte}</TableCell>
+                                    <TableCell align='left'>
+                                        {misureEsternotelaio.base}
+                                    </TableCell>
+                                    <TableCell align='right'>
+                                        {misureEsternotelaio.altezza}
+                                    </TableCell>
+                                    <TableCell align='left'>
+                                        {ante.maniglia}
+                                    </TableCell>
+                                    <TableCell align='right'>
+                                        {ante.laterale}
+                                    </TableCell>
+                                    <TableCell align='left'>
+                                        {fascione.maniglia}
+                                    </TableCell>
+                                    <TableCell align='right'>
+                                        {fascione.laterale}
+                                    </TableCell>
+                                    <TableCell align='left'>
+                                        {mezzaLamella.maniglia}
+                                    </TableCell>
+                                    <TableCell align='right'>
+                                        {mezzaLamella.laterale}
+                                    </TableCell>
+                                    <TableCell align='left'>
+                                        {lamella.maniglia}
+                                    </TableCell>
+                                    <TableCell align='right'>
+                                        {lamella.laterale}
+                                    </TableCell>
+                                </StyledTableRow>
+                            )
+                        )}
                     </TableBody>
                 </Table>
             </TableContainer>

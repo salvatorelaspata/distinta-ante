@@ -38,13 +38,13 @@ export default function TableFormularioDueAnte({ rows }) {
                     <TableHead>
                         <TableRow>
                             <StyledTableCell align='left'>
-                                Base maniglia (cm)
+                                Base maniglia
                             </StyledTableCell>
                             <StyledTableCell align='center'>
                                 Tipo
                             </StyledTableCell>
                             <StyledTableCell align='right'>
-                                Base laterale (cm)
+                                Base laterale
                             </StyledTableCell>
                         </TableRow>
                     </TableHead>

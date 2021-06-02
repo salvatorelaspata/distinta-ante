@@ -23,14 +23,6 @@ const state = proxy({
     tipo: null,
     base: null,
     altezza: null,
-    telaioB: null,
-    telaioH: null,
-    antaB: null,
-    antaH: null,
-    fascione: null,
-    tAScatto: null,
-    mezzaLamella: null,
-    lamella: null,
 });
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     devtools(state, 'distinta'); // DEBUG
@@ -55,23 +47,16 @@ function DialogAddDistinte({ open, handleClose, updateList }) {
             !snapshot.altezza
         )
             return;
-        const [telaio, anta, fascione, tAScatto] = formulario(
-            parseInt(snapshot.telaio)
-        )(parseInt(snapshot.ante))(parseInt(snapshot.base))(
-            parseInt(snapshot.altezza)
-        );
-        state.telaioB = telaio.base;
-        state.telaioH = telaio.altezza;
-        state.antaB = anta.base;
-        state.antaH = anta.altezza;
-        state.fascione = fascione.base;
-        state.tAScatto = tAScatto.altezza;
-        createDistinteItem({ id: new Date().getTime(), ...state }).then(
-            (res) => {
-                handleClose();
-                updateList(res);
-            }
-        );
+        debugger;
+        const f = formulario(parseInt(snapshot.telaio))(
+            parseInt(snapshot.ante)
+        )(parseInt(snapshot.base))(parseInt(snapshot.altezza))(snapshot.tipo);
+
+        const distinta = f[7];
+        createDistinteItem(distinta).then((res) => {
+            handleClose();
+            updateList(res);
+        });
     };
 
     const handleEnter = () => {
@@ -81,12 +66,7 @@ function DialogAddDistinte({ open, handleClose, updateList }) {
             }
         }
     };
-    // Proporrei di schematizzare secondo:
-    // - Posizione (che sarà automatica in funzione alle righe)
-    // - pezzi per ogni posizione (solitamente è 1 ma potrebbero essere più di uno)(in questo caso non so a cosa potrebbe servire ma magari potremmo inserirlo per poi aggiungere in un secondo momento qualche funzione)
-    // - numero di ante
-    // - scelta della lettera (scelta opzionabile in 2 ante e obbligatoria in 3 o 4 ante)
-    // - inserimento misure esterne telaio (base e altezza).
+
     return (
         <div>
             <Dialog

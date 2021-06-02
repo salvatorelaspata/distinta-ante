@@ -1,12 +1,12 @@
-import React from "react";
-import { Fab, Grid, Hidden, Paper, useTheme } from "@material-ui/core";
-import clsx from "clsx";
-import { useStyles } from "../components/hook/useStyles";
-import StandardContainer from "../components/layout/StandardContainer";
-import TableDistinte from "../components/TableDistinte/TableDistinte";
-import AddIcon from "@material-ui/icons/Add";
-import DialogAddDistinte from "../components/TableDistinte/DialogAddDistinte";
-import useDistinte from "../components/hook/useDistinte";
+import React from 'react';
+import { Fab, Grid, Hidden, Paper, useTheme } from '@material-ui/core';
+import clsx from 'clsx';
+import { useStyles } from '../components/hook/useStyles';
+import StandardContainer from '../components/layout/StandardContainer';
+import TableDistinte from '../components/TableDistinte/TableDistinte';
+import AddIcon from '@material-ui/icons/Add';
+import DialogAddDistinte from '../components/TableDistinte/DialogAddDistinte';
+import useDistinte from '../components/hook/useDistinte';
 
 const Distinte = () => {
     const { distinte, open, setOpen, updateList } = useDistinte([], false);
@@ -24,9 +24,9 @@ const Distinte = () => {
                 </Grid>
             </StandardContainer>
             <Fab
-                size="medium"
-                color="secondary"
-                aria-label="Add Formulario"
+                size='medium'
+                color='secondary'
+                aria-label='Add Formulario'
                 className={classes.fabMargin}
                 onClick={() => setOpen(true)}
             >
