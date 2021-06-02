@@ -65,10 +65,10 @@ export default function TableDistinte({ rows }) {
                                 Fascione (mm)
                             </StyledTableCell>
                             <StyledTableCell colSpan={2} align='center'>
-                                Mezza Labella (mm)
+                                Mezza Lamella (mm)
                             </StyledTableCell>
                             <StyledTableCell colSpan={2} align='center'>
-                                Labella (mm)
+                                Lamella (mm)
                             </StyledTableCell>
                         </TableRow>
                         <TableRow>
