@@ -1,12 +1,14 @@
 import React from 'react';
-import { useTheme, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { useStyles } from '../hook/useStyles';
+import { Checkbox } from '@material-ui/core';
+import { useTable } from '../hook/useTable';
+import ToolbarDistinte from './ToolbarDistinte';
 
 const StyledTableCell = withStyles(
     (theme) => ({
@@ -32,25 +34,42 @@ const StyledTableRow = withStyles(
     { index: 1 }
 )(TableRow);
 
-export default function TableDistinte({ rows }) {
-    console.log(rows);
-    const theme = useTheme();
-    const classes = useStyles(theme);
+export default function TableDistinte({ rows, multipleRemove }) {
+    const {
+        handleSelectAllClick,
+        selected,
+        isSelected,
+        handleClick,
+        dense,
+        setSelected,
+    } = useTable(rows);
+
+    const handleRemoveItem = function () {
+        const all = multipleRemove(selected);
+        Promise.all(all).then((values) => {
+            setSelected([]);
+        });
+    };
+    const numSelected = selected && selected.length;
+    const rowCount = rows.length;
     return (
-        <div>
-            <span className={classes.subtitle}>Distinte</span>
-            <TableContainer style={{ maxHeight: 400 }}>
-                <Table
-                    className={classes.table}
-                    stickyHeader
-                    aria-label='sticky table'
-                >
+        <>
+            <ToolbarDistinte
+                title='Distinte'
+                numSelected={selected && selected.length}
+                onDeleteDistinta={handleRemoveItem}
+            />
+            <TableContainer style={{ maxHeight: '100%' }}>
+                <Table stickyHeader aria-label='sticky table'>
                     <TableHead>
                         <TableRow>
+                            <StyledTableCell />
+
                             <StyledTableCell width={60}>Pos.</StyledTableCell>
                             <StyledTableCell width={60}>Pz.</StyledTableCell>
                             <StyledTableCell width={60}>Telaio</StyledTableCell>
                             <StyledTableCell width={80}>n Ante</StyledTableCell>
+                            <StyledTableCell width={60}>Tipo</StyledTableCell>
                             <StyledTableCell
                                 width={120}
                                 colSpan={2}
@@ -72,17 +91,85 @@ export default function TableDistinte({ rows }) {
                             </StyledTableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell colSpan={4} />
-                            <TableCell align='left'>Base</TableCell>
-                            <TableCell align='right'>Altezza</TableCell>
-                            <TableCell align='left'>Maniglia</TableCell>
-                            <TableCell align='right'>Laterale</TableCell>
-                            <TableCell align='left'>Maniglia</TableCell>
-                            <TableCell align='right'>Laterale</TableCell>
-                            <TableCell align='left'>Maniglia</TableCell>
-                            <TableCell align='right'>Laterale</TableCell>
-                            <TableCell align='left'>Maniglia</TableCell>
-                            <TableCell align='right'>Laterale</TableCell>
+                            <TableCell padding='checkbox'>
+                                <Checkbox
+                                    indeterminate={
+                                        numSelected > 0 &&
+                                        numSelected < rowCount
+                                    }
+                                    checked={
+                                        rowCount > 0 && numSelected === rowCount
+                                    }
+                                    onChange={handleSelectAllClick}
+                                    inputProps={{
+                                        'aria-label': 'select all desserts',
+                                    }}
+                                />
+                            </TableCell>
+                            <TableCell
+                                colSpan={5}
+                                style={{ top: dense ? 81 : 61 }}
+                            />
+                            <TableCell
+                                align='left'
+                                style={{ top: dense ? 81 : 61 }}
+                            >
+                                Base
+                            </TableCell>
+                            <TableCell
+                                align='right'
+                                style={{ top: dense ? 81 : 61 }}
+                            >
+                                Altezza
+                            </TableCell>
+                            <TableCell
+                                align='left'
+                                style={{ top: dense ? 81 : 61 }}
+                            >
+                                Maniglia
+                            </TableCell>
+                            <TableCell
+                                align='right'
+                                style={{ top: dense ? 81 : 61 }}
+                            >
+                                Laterale
+                            </TableCell>
+                            <TableCell
+                                align='left'
+                                style={{ top: dense ? 81 : 61 }}
+                            >
+                                Maniglia
+                            </TableCell>
+                            <TableCell
+                                align='right'
+                                style={{ top: dense ? 81 : 61 }}
+                            >
+                                Laterale
+                            </TableCell>
+                            <TableCell
+                                align='left'
+                                style={{ top: dense ? 81 : 61 }}
+                            >
+                                Maniglia
+                            </TableCell>
+                            <TableCell
+                                align='right'
+                                style={{ top: dense ? 81 : 61 }}
+                            >
+                                Laterale
+                            </TableCell>
+                            <TableCell
+                                align='left'
+                                style={{ top: dense ? 81 : 61 }}
+                            >
+                                Maniglia
+                            </TableCell>
+                            <TableCell
+                                align='right'
+                                style={{ top: dense ? 81 : 61 }}
+                            >
+                                Laterale
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -92,6 +179,7 @@ export default function TableDistinte({ rows }) {
                                     pz,
                                     telaio,
                                     nAnte,
+                                    tipo,
                                     misureEsternotelaio,
                                     ante,
                                     fascione,
@@ -99,48 +187,71 @@ export default function TableDistinte({ rows }) {
                                     lamella,
                                 },
                                 index
-                            ) => (
-                                <StyledTableRow key={index}>
-                                    <TableCell>{index + 1}</TableCell>
-                                    <TableCell>{pz}</TableCell>
-                                    <TableCell>{telaio}</TableCell>
-                                    <TableCell>{nAnte}</TableCell>
-                                    <TableCell align='left'>
-                                        {misureEsternotelaio.base}
-                                    </TableCell>
-                                    <TableCell align='right'>
-                                        {misureEsternotelaio.altezza}
-                                    </TableCell>
-                                    <TableCell align='left'>
-                                        {ante.maniglia}
-                                    </TableCell>
-                                    <TableCell align='right'>
-                                        {ante.laterale}
-                                    </TableCell>
-                                    <TableCell align='left'>
-                                        {fascione.maniglia}
-                                    </TableCell>
-                                    <TableCell align='right'>
-                                        {fascione.laterale}
-                                    </TableCell>
-                                    <TableCell align='left'>
-                                        {mezzaLamella.maniglia}
-                                    </TableCell>
-                                    <TableCell align='right'>
-                                        {mezzaLamella.laterale}
-                                    </TableCell>
-                                    <TableCell align='left'>
-                                        {lamella.maniglia}
-                                    </TableCell>
-                                    <TableCell align='right'>
-                                        {lamella.laterale}
-                                    </TableCell>
-                                </StyledTableRow>
-                            )
+                            ) => {
+                                const isItemSelected = isSelected(rows[index]);
+                                return (
+                                    <StyledTableRow
+                                        role='checkbox'
+                                        key={index}
+                                        style={{ top: 81 * 2 }}
+                                        onClick={(event) =>
+                                            handleClick(event, rows[index])
+                                        }
+                                        selected={isItemSelected}
+                                        aria-checked={isItemSelected}
+                                        tabIndex={-1}
+                                    >
+                                        <TableCell padding='checkbox'>
+                                            <Checkbox
+                                                checked={isItemSelected}
+                                                inputProps={{
+                                                    'aria-labelledby':
+                                                        index + 1,
+                                                }}
+                                            />
+                                        </TableCell>
+                                        <TableCell>{index + 1}</TableCell>
+                                        <TableCell>{pz}</TableCell>
+                                        <TableCell>{telaio}</TableCell>
+                                        <TableCell>{nAnte}</TableCell>
+                                        <TableCell>{tipo}</TableCell>
+                                        <TableCell align='left'>
+                                            {misureEsternotelaio.base}
+                                        </TableCell>
+                                        <TableCell align='right'>
+                                            {misureEsternotelaio.altezza}
+                                        </TableCell>
+                                        <TableCell align='left'>
+                                            {ante.maniglia}
+                                        </TableCell>
+                                        <TableCell align='right'>
+                                            {ante.laterale}
+                                        </TableCell>
+                                        <TableCell align='left'>
+                                            {fascione.maniglia}
+                                        </TableCell>
+                                        <TableCell align='right'>
+                                            {fascione.laterale}
+                                        </TableCell>
+                                        <TableCell align='left'>
+                                            {mezzaLamella.maniglia}
+                                        </TableCell>
+                                        <TableCell align='right'>
+                                            {mezzaLamella.laterale}
+                                        </TableCell>
+                                        <TableCell align='left'>
+                                            {lamella.maniglia}
+                                        </TableCell>
+                                        <TableCell align='right'>
+                                            {lamella.laterale}
+                                        </TableCell>
+                                    </StyledTableRow>
+                                );
+                            }
                         )}
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
+        </>
     );
 }

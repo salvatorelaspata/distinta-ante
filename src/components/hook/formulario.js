@@ -80,6 +80,7 @@ export const formulario = (l) => (a) => (b) => (h) => (t) => {
     fascione = antaB - constants.DifferenzaFascione; //132;
     mezzaLamella = fascione - constants.DifferenzaMezzaLamella; //27;
     lamella = mezzaLamella + constants.AggiuntaLamella; //11;
+
     const distinta = {
         pz: 1, //da parametrizzare
         telaio: l,
@@ -90,20 +91,28 @@ export const formulario = (l) => (a) => (b) => (h) => (t) => {
             altezza: h,
         },
         ante: {
-            maniglia: a === 1 ? antaB : dueAnte[0].baseManiglia,
-            laterale: a === 1 ? null : dueAnte[0].baseLaterale,
+            maniglia: a === 1 ? antaB : !t ? antaB : dueAnte[0].baseManiglia,
+            laterale: a === 1 ? null : !t ? antaB : dueAnte[0].baseLaterale,
         },
         fascione: {
-            maniglia: a === 1 ? fascione : dueAnte[1].baseManiglia,
-            laterale: a === 1 ? null : dueAnte[1].baseLaterale,
+            maniglia:
+                a === 1 ? fascione : !t ? fascione : dueAnte[1].baseManiglia,
+            laterale: a === 1 ? null : !t ? fascione : dueAnte[1].baseLaterale,
         },
         mezzaLamella: {
-            maniglia: a === 1 ? mezzaLamella : dueAnte[2].baseManiglia,
-            laterale: a === 1 ? null : dueAnte[2].baseLaterale,
+            maniglia:
+                a === 1
+                    ? mezzaLamella
+                    : !t
+                    ? mezzaLamella
+                    : dueAnte[2].baseManiglia,
+            laterale:
+                a === 1 ? null : !t ? mezzaLamella : dueAnte[2].baseLaterale,
         },
         lamella: {
-            maniglia: a === 1 ? lamella : dueAnte[3].baseManiglia,
-            laterale: a === 1 ? null : dueAnte[3].baseLaterale,
+            maniglia:
+                a === 1 ? lamella : !t ? lamella : dueAnte[3].baseManiglia,
+            laterale: a === 1 ? null : !t ? lamella : dueAnte[3].baseLaterale,
         },
     };
     return [

@@ -46,7 +46,7 @@ export const useStyles = makeStyles(
             fontWeight: 'bold',
         },
         formControl: {
-            margin: theme.spacing(1)
+            margin: theme.spacing(1),
         },
         drawerPaper: {
             position: 'relative',
@@ -101,7 +101,7 @@ export const useStyles = makeStyles(
             position: 'absolute',
             bottom: theme.spacing(5),
             right: theme.spacing(5),
-        }
+        },
     }),
     { index: 1 }
 );
