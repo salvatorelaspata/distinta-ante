@@ -53,7 +53,7 @@ export default function TableDistinte({ rows, multipleRemove }) {
     const numSelected = selected && selected.length;
     const rowCount = rows.length;
     return (
-        <>
+        <div>
             <ToolbarDistinte
                 title='Distinte'
                 numSelected={selected && selected.length}
@@ -252,6 +252,6 @@ export default function TableDistinte({ rows, multipleRemove }) {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </>
+        </div>
     );
 }
