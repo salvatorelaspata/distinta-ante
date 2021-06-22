@@ -8,12 +8,14 @@ import {
     useTheme,
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import clsx from 'clsx';
 import useToolbarStyles from '../hook/useToolbarStyles';
 
 const ToolbarDistinte = ({
     title,
     numSelected,
+    onEditDistinta,
     onDeleteDistinta,
     dense,
     handleChangeDense,
@@ -46,7 +48,13 @@ const ToolbarDistinte = ({
                     {title}
                 </Typography>
             )}
-
+            {numSelected === 1 && (
+                <Tooltip title='Edit'>
+                    <IconButton aria-label='Edit' onClick={onEditDistinta}>
+                        <EditIcon />
+                    </IconButton>
+                </Tooltip>
+            )}
             {numSelected > 0 ? (
                 <Tooltip title='Delete'>
                     <IconButton aria-label='delete' onClick={onDeleteDistinta}>

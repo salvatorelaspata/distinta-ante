@@ -28,8 +28,13 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     devtools(state, 'distinta'); // DEBUG
 }
 
-function DialogAddDistinte({ open, handleClose, updateList }) {
+function DialogDistinte({ open, handleClose, prevalue, updateList }) {
     const snapshot = useSnapshot(state, { sync: true });
+    for (const key in prevalue) {
+        if (Object.hasOwnProperty.call(prevalue, key)) {
+            state[key] = prevalue[key];
+        }
+    }
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -158,4 +163,4 @@ function DialogAddDistinte({ open, handleClose, updateList }) {
     );
 }
 
-export default DialogAddDistinte;
+export default DialogDistinte;

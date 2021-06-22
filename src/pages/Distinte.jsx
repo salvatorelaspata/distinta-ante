@@ -5,18 +5,19 @@ import { useStyles } from '../components/hook/useStyles';
 import StandardContainer from '../components/layout/StandardContainer';
 import TableDistinte from '../components/TableDistinte/TableDistinte';
 import AddIcon from '@material-ui/icons/Add';
-import DialogAddDistinte from '../components/TableDistinte/DialogAddDistinte';
+import DialogDistinte from '../components/TableDistinte/DialogDistinte';
 import useDistinte from '../components/hook/useDistinte';
 import { deleteDistinta } from '../api';
+import { useState } from 'react';
 
 const Distinte = () => {
+    const [prevalue, setPrevalue] = useState(null);
     const { distinte, open, setOpen, updateList, setDistinte } = useDistinte(
         [],
         false
     );
 
     const theme = useTheme();
-    console.log(theme);
     const classes = useStyles(theme);
 
     const multipleRemove = function (selected) {
@@ -32,6 +33,19 @@ const Distinte = () => {
         return allPromise;
     };
 
+    const editDistinta = function (selected) {
+        const [edit] = selected;
+        const obj = {
+            telaio: edit.telaio,
+            ante: edit.ante,
+            tipo: edit.tipo,
+            base: edit.base,
+            altezza: edit.altezza,
+        };
+        setPrevalue(obj);
+        setOpen(true);
+    };
+
     return (
         <div>
             <StandardContainer>
@@ -40,6 +54,7 @@ const Distinte = () => {
                         <TableDistinte
                             rows={distinte}
                             multipleRemove={multipleRemove}
+                            editDistinta={editDistinta}
                         />
                     </Paper>
                 </Grid>
@@ -54,10 +69,11 @@ const Distinte = () => {
                 <AddIcon />
             </Fab>
             <Hidden>
-                <DialogAddDistinte
+                <DialogDistinte
                     open={open}
                     handleClose={() => setOpen(false)}
                     updateList={updateList}
+                    prevalue={prevalue}
                 />
             </Hidden>
         </div>

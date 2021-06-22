@@ -38,7 +38,7 @@ const StyledTableRow = withStyles(
     { index: 1 }
 )(TableRow);
 
-export default function TableDistinte({ rows, multipleRemove }) {
+export default function TableDistinte({ rows, multipleRemove, editDistinta }) {
     const {
         handleSelectAllClick,
         selected,
@@ -53,6 +53,10 @@ export default function TableDistinte({ rows, multipleRemove }) {
             setSelected([]);
         });
     };
+    const handleEditItem = function () {
+        debugger;
+        //editDistinta(selected);
+    };
     const numSelected = selected && selected.length;
     const rowCount = rows.length;
 
@@ -64,6 +68,7 @@ export default function TableDistinte({ rows, multipleRemove }) {
                 title='Distinte'
                 numSelected={selected && selected.length}
                 onDeleteDistinta={handleRemoveItem}
+                onEditDistinta={handleEditItem}
             />
             <TableContainer style={{ maxHeight: '100%' }}>
                 <Table stickyHeader aria-label='sticky table'>
