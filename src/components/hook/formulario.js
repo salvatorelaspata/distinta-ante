@@ -90,10 +90,12 @@ export const formulario = (l) => (a) => (b) => (h) => (t) => {
             base: b,
             altezza: h,
         },
+        altezza: antaH,
         ante: {
             maniglia: a === 1 ? antaB : !t ? antaB : dueAnte[0].baseManiglia,
             laterale: a === 1 ? null : !t ? antaB : dueAnte[0].baseLaterale,
         },
+        tAScatto: tAScatto,
         fascione: {
             maniglia:
                 a === 1 ? fascione : !t ? fascione : dueAnte[1].baseManiglia,

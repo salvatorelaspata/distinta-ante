@@ -101,6 +101,11 @@ export const useStyles = makeStyles(
             position: 'absolute',
             bottom: theme.spacing(5),
             right: theme.spacing(5),
+            zIndex: 9999,
+        },
+        borderTable: {
+            borderLeft: '1px solid',
+            borderLeftColor: theme.palette.primary.secondary,
         },
     }),
     { index: 1 }

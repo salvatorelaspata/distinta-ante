@@ -16,6 +16,7 @@ const Distinte = () => {
     );
 
     const theme = useTheme();
+    console.log(theme);
     const classes = useStyles(theme);
 
     const multipleRemove = function (selected) {
