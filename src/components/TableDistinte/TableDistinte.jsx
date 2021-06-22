@@ -335,7 +335,7 @@ export default function TableDistinte({ rows, multipleRemove, editDistinta }) {
                                             className={clsx(
                                                 classes.borderTable
                                             )}
-                                            align='right'
+                                            align='center'
                                         >
                                             {altezza}
                                         </TableCell>
@@ -359,7 +359,7 @@ export default function TableDistinte({ rows, multipleRemove, editDistinta }) {
                                             className={clsx(
                                                 classes.borderTable
                                             )}
-                                            align='right'
+                                            align='center'
                                         >
                                             {tAScatto}
                                         </TableCell>
