@@ -1,7 +1,11 @@
 export const constants = {
     DifferenzaAltezzaAnta3: 22,
     DifferenzaAltezzaAnta4: 30,
-    DifferenzaTAScattoTelaio3: 74,
+    DifferenzaTAScattoTelaio4Ante3Lati: 37,
+    DifferenzaTAScattoTelaio4Ante4Lati: 37,
+    DifferenzaAltezzaAnta4Lati: 22,
+    DifferenzaTAScattoTelaio3: 37,
+    DifferenzaBase3Ante: 41,
     DifferenzaTAScattoTelaio4: 74,
     DifferenzaFascione: 132,
     DifferenzaMezzaLamella: 27,
@@ -60,14 +64,14 @@ export const formulario = (l) => (a) => (b) => (h) => (t) => {
                 dueAnte[0].baseManiglia = antaB - constants.DeltaAntaAB; //25;
                 dueAnte[0].baseLaterale = antaB + constants.DeltaAntaAB; //25;
             }
-
+            //Base Maniglia
             dueAnte[1].baseManiglia =
                 dueAnte[0].baseManiglia - constants.DifferenzaFascione; //132;    // fascione
             dueAnte[2].baseManiglia =
                 dueAnte[1].baseManiglia - constants.DifferenzaMezzaLamella; //27;    // mezza lamella
             dueAnte[3].baseManiglia =
                 dueAnte[2].baseManiglia + constants.AggiuntaLamella; //11;     // lamella
-
+            //Base Laterale
             dueAnte[1].baseLaterale =
                 dueAnte[0].baseLaterale - constants.DifferenzaFascione; //132;    // fascione
             dueAnte[2].baseLaterale =
@@ -75,6 +79,112 @@ export const formulario = (l) => (a) => (b) => (h) => (t) => {
             dueAnte[3].baseLaterale =
                 dueAnte[2].baseLaterale + constants.AggiuntaLamella; //11;     // lamella
         }
+    } else if (a === 3) {
+        if (l === 3) {
+            antaH = telaioH - constants.DifferenzaAltezzaAnta4Lati; //22
+            tAScatto = antaH - constants.DifferenzaTAScattoTelaio4Ante3Lati; //37;
+        } else if (l === 4) {
+            antaH = telaioH - constants.DifferenzaAltezzaAnta4Lati; //22
+            tAScatto = antaH - constants.DifferenzaTAScattoTelaio4Ante4Lati; //37;
+        }
+
+        antaB = (telaioB - constants.DifferenzaBase3Ante) / a; //41
+        if (t) {
+            if (t.toLowerCase() === 'm' || t.toLowerCase() === 'n') {
+                dueAnte[0].baseManiglia = (telaioB - 41 - 60) / 3 + 30; //=(((D3-41)-60)/3)+30
+                dueAnte[0].baseCentrale = (telaioB - 41 - 60) / 3 + 30; //=(((D3-41)-60)/3)+30
+                dueAnte[0].baseLaterale = (telaioB - 41 - 60) / 3; //=((D3-41)-60)/3
+            } else if (t.toLowerCase() === 'o' || t.toLowerCase() === 'p') {
+                dueAnte[0].baseManiglia = (telaioB - 41 - 70) / 3; //=(((D3-41)-70)/3)
+                dueAnte[0].baseCentrale = (telaioB - 41 - 70) / 3 + 30; //=(((D3-41)-70)/3)+70
+                dueAnte[0].baseLaterale = (telaioB - 41 - 70) / 3; //=(((D3-41)-70)/3)
+            } else if (t.toLowerCase() === 'c' || t.toLowerCase() === 'd') {
+                dueAnte[0].baseManiglia = (telaioB - 41 - 50) / 3; //=(((D3-41)-50)/3)+50
+                dueAnte[0].baseCentrale = (telaioB - 41 - 50) / 3 + 50; //=(((D3-41)-50)/3)
+                dueAnte[0].baseLaterale = (telaioB - 41 - 50) / 3; //=(((D3-41)-50)/3)
+            } else if (t.toLowerCase() === 'e' || t.toLowerCase() === 'f') {
+                dueAnte[0].baseManiglia = (telaioB - 41 - 100) / 3; //=(((D3-41)-100)/3)
+                dueAnte[0].baseCentrale = (telaioB - 41 - 100) / 3 + 50; //=(((D3-41)-100)/3)+50
+                dueAnte[0].baseLaterale = (telaioB - 41 - 100) / 3 + 50; //=(((D3-41)-100)/3)+50
+            }
+        }
+        // Base Maniglia
+        dueAnte[1].baseManiglia =
+            dueAnte[0].baseManiglia - constants.DifferenzaFascione; //132;    // fascione
+        dueAnte[2].baseManiglia =
+            dueAnte[1].baseManiglia - constants.DifferenzaMezzaLamella; //27;    // mezza lamella
+        dueAnte[3].baseManiglia =
+            dueAnte[2].baseManiglia + constants.AggiuntaLamella; //11;     // lamella
+
+        // Base Centrale
+        dueAnte[1].baseCentrale =
+            dueAnte[0].baseCentrale - constants.DifferenzaFascione; //132;    // fascione
+        dueAnte[2].baseCentrale =
+            dueAnte[1].baseCentrale - constants.DifferenzaMezzaLamella; //27;    // mezza lamella
+        dueAnte[3].baseCentrale =
+            dueAnte[2].baseCentrale + constants.AggiuntaLamella; //11;     // lamella
+
+        // Base Laterale
+        dueAnte[1].baseLaterale =
+            dueAnte[0].baseLaterale - constants.DifferenzaFascione; //132;    // fascione
+        dueAnte[2].baseLaterale =
+            dueAnte[1].baseLaterale - constants.DifferenzaMezzaLamella; //27;     // mezza lamella
+        dueAnte[3].baseLaterale =
+            dueAnte[2].baseLaterale + constants.AggiuntaLamella; //11;     // lamella
+    } else if (a === 4) {
+        if (l === 3) {
+            antaH = telaioH - constants.DifferenzaAltezzaAnta4Lati; //22
+            tAScatto = antaH - constants.DifferenzaTAScattoTelaio4Ante3Lati; //37;
+        } else if (l === 4) {
+            antaH = telaioH - constants.DifferenzaAltezzaAnta4Lati; //22
+            tAScatto = antaH - constants.DifferenzaTAScattoTelaio4Ante4Lati; //37;
+        }
+
+        antaB = (telaioB - constants.DifferenzaBase3Ante) / a; //41
+        if (t) {
+            if (t.toLowerCase() === 'g' || t.toLowerCase() === 'h') {
+                dueAnte[0].baseLateraleSX = (telaioB - 46 - 95) / 4 + 50; //=(((D3-46)-95)/4)+50
+                dueAnte[0].baseManiglia = (telaioB - 46 - 95) / 4; //=(((D3-46)-95)/4)
+                dueAnte[0].baseCentrale = (telaioB - 46 - 95) / 4; //=(((D3-46)-95)/4)
+                dueAnte[0].baseLateraleDX = (telaioB - 46 - 95) / 4 + 50; //=(((D3-46)-95)/4)+50
+            } else if (t.toLowerCase() === 'r' || t.toLowerCase() === 'q') {
+                dueAnte[0].baseManiglia = (telaioB - 46 - 101) / 4; //=(((D3-46)-101)/4)
+                dueAnte[0].baseCentrale = (telaioB - 46 - 101) / 4 + 70; //=(((D3-46)-101)/4)+70
+                dueAnte[0].baseLateraleDX = (telaioB - 46 - 101) / 4 + 36; //=(((D3-46)-101)/4)+36
+                dueAnte[0].baseLateraleSX = (telaioB - 46 - 101) / 4; //=(((D3-46)-101)/4)
+            }
+        }
+        // Base Maniglia
+        dueAnte[1].baseManiglia =
+            dueAnte[0].baseManiglia - constants.DifferenzaFascione; //132;    // fascione
+        dueAnte[2].baseManiglia =
+            dueAnte[1].baseManiglia - constants.DifferenzaMezzaLamella; //27;    // mezza lamella
+        dueAnte[3].baseManiglia =
+            dueAnte[2].baseManiglia + constants.AggiuntaLamella; //11;     // lamella
+
+        // Base Centrale
+        dueAnte[1].baseCentrale =
+            dueAnte[0].baseCentrale - constants.DifferenzaFascione; //132;    // fascione
+        dueAnte[2].baseCentrale =
+            dueAnte[1].baseCentrale - constants.DifferenzaMezzaLamella; //27;    // mezza lamella
+        dueAnte[3].baseCentrale =
+            dueAnte[2].baseCentrale + constants.AggiuntaLamella; //11;     // lamella
+
+        // Base Laterale
+        dueAnte[1].baseLateraleSX =
+            dueAnte[0].baseLateraleSX - constants.DifferenzaFascione; //132;    // fascione
+        dueAnte[2].baseLateraleSX =
+            dueAnte[1].baseLateraleSX - constants.DifferenzaMezzaLamella; //27;     // mezza lamella
+        dueAnte[3].baseLateraleSX =
+            dueAnte[2].baseLateraleSX + constants.AggiuntaLamella; //11;     // lamella
+
+        // Base Laterale
+        dueAnte[1].baseLateraleDX =
+            dueAnte[0].baseLateraleDX - constants.DifferenzaFascione; //132;    // fascione
+        dueAnte[2].baseLateraleDX =
+            dueAnte[1].baseLateraleDX - constants.DifferenzaMezzaLamella; //27;     // mezza lamella
+        dueAnte[3].baseLateraleDX =
+            dueAnte[2].baseLateraleDX + constants.AggiuntaLamella; //11;     // lamella
     }
 
     fascione = antaB - constants.DifferenzaFascione; //132;

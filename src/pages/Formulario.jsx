@@ -16,15 +16,22 @@ import TableFormulario from '../components/TableFormulario/TableFormulario';
 import { formulario } from '../components/hook/formulario';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TableFormularioDueAnte from '../components/TableFormulario/TableFormularioDueAnte';
+import TableFormulario3Ante from '../components/TableFormulario/TableFormulario3Ante';
+import TableFormulario4Ante from '../components/TableFormulario/TableFormulario4Ante';
 import Legend from '../components/Legend';
 
 import abImage from './img/AB.png';
 import ilImage from './img/IL.png';
-
-const rowsTelaio3Aula1 = formulario(3)(1);
-const rowsTelaio3Aula2 = formulario(3)(2);
-const rowsTelaio4Aula1 = formulario(4)(1);
-const rowsTelaio4Aula2 = formulario(4)(2);
+const rowsTelaio3 = formulario(3);
+const rowsTelaio4 = formulario(4);
+const rowsTelaio3Anta1 = rowsTelaio3(1);
+const rowsTelaio3Anta2 = rowsTelaio3(2);
+const rowsTelaio3Anta3 = rowsTelaio3(3);
+const rowsTelaio3Anta4 = rowsTelaio3(4);
+const rowsTelaio4Anta1 = rowsTelaio4(1);
+const rowsTelaio4Anta2 = rowsTelaio4(2);
+const rowsTelaio4Anta3 = rowsTelaio4(3);
+const rowsTelaio4Anta4 = rowsTelaio4(4);
 
 const Formulario = () => {
     const theme = useTheme();
@@ -69,12 +76,20 @@ const Formulario = () => {
                     <AccordionDetails>
                         <Grid container direction='row' justify='space-around'>
                             <TableFormulario
-                                rows={rowsTelaio3Aula1(base)(altezza)()}
+                                rows={rowsTelaio3Anta1(base)(altezza)()}
                                 ante={1}
                             />
                             <TableFormulario
-                                rows={rowsTelaio3Aula2(base)(altezza)()}
+                                rows={rowsTelaio3Anta2(base)(altezza)()}
                                 ante={2}
+                            />
+                            <TableFormulario
+                                rows={rowsTelaio3Anta3(base)(altezza)()}
+                                ante={3}
+                            />
+                            <TableFormulario
+                                rows={rowsTelaio3Anta4(base)(altezza)()}
+                                ante={4}
                             />
                         </Grid>
                     </AccordionDetails>
@@ -93,12 +108,20 @@ const Formulario = () => {
                     <AccordionDetails>
                         <Grid container direction='row' justify='space-around'>
                             <TableFormulario
-                                rows={rowsTelaio4Aula1(base)(altezza)()}
+                                rows={rowsTelaio4Anta1(base)(altezza)()}
                                 ante={1}
                             />
                             <TableFormulario
-                                rows={rowsTelaio4Aula2(base)(altezza)()}
+                                rows={rowsTelaio4Anta2(base)(altezza)()}
                                 ante={2}
+                            />
+                            <TableFormulario
+                                rows={rowsTelaio4Anta3(base)(altezza)()}
+                                ante={3}
+                            />
+                            <TableFormulario
+                                rows={rowsTelaio4Anta4(base)(altezza)()}
+                                ante={4}
                             />
                         </Grid>
                     </AccordionDetails>
@@ -106,7 +129,7 @@ const Formulario = () => {
             </Grid>
 
             <Grid item xs={12} md={6} lg={6}>
-                <Accordion defaultExpanded={true}>
+                <Accordion defaultExpanded={false}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls='2 ANTE "I & L"'
@@ -125,7 +148,7 @@ const Formulario = () => {
                             <img src={ilImage} alt='IL' width='50%' />
                             <TableFormularioDueAnte
                                 rows={
-                                    rowsTelaio4Aula2(base)(altezza)('i').slice(
+                                    rowsTelaio4Anta2(base)(altezza)('i').slice(
                                         6,
                                         7
                                     )[0]
@@ -136,7 +159,7 @@ const Formulario = () => {
                 </Accordion>
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
-                <Accordion defaultExpanded={true}>
+                <Accordion defaultExpanded={false}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls='2 ANTE "A & B"'
@@ -155,7 +178,187 @@ const Formulario = () => {
                             <img src={abImage} alt='AB' width='50%' />
                             <TableFormularioDueAnte
                                 rows={
-                                    rowsTelaio4Aula2(base)(altezza)('a').slice(
+                                    rowsTelaio4Anta2(base)(altezza)('a').slice(
+                                        6,
+                                        7
+                                    )[0]
+                                }
+                            />
+                        </Grid>
+                    </AccordionDetails>
+                </Accordion>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+                <Accordion defaultExpanded={false}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls='3 ANTE "M & N"'
+                    >
+                        <Typography className={classes.heading}>
+                            3 ANTE "M & N"
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Grid
+                            container
+                            direction='column'
+                            justify='center'
+                            alignItems='center'
+                        >
+                            {/* <img src={ilImage} alt='IL' width='50%' /> */}
+                            <TableFormulario3Ante
+                                rows={
+                                    rowsTelaio4Anta3(base)(altezza)('m').slice(
+                                        6,
+                                        7
+                                    )[0]
+                                }
+                            />
+                        </Grid>
+                    </AccordionDetails>
+                </Accordion>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+                <Accordion defaultExpanded={false}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls='3 ANTE "O & P"'
+                    >
+                        <Typography className={classes.heading}>
+                            3 ANTE "O & P"
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Grid
+                            container
+                            direction='column'
+                            justify='center'
+                            alignItems='center'
+                        >
+                            {/* <img src={abImage} alt='AB' width='50%' /> */}
+                            <TableFormulario3Ante
+                                rows={
+                                    rowsTelaio4Anta3(base)(altezza)('o').slice(
+                                        6,
+                                        7
+                                    )[0]
+                                }
+                            />
+                        </Grid>
+                    </AccordionDetails>
+                </Accordion>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+                <Accordion defaultExpanded={false}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls='3 ANTE "C & D"'
+                    >
+                        <Typography className={classes.heading}>
+                            3 ANTE "C & D"
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Grid
+                            container
+                            direction='column'
+                            justify='center'
+                            alignItems='center'
+                        >
+                            {/* <img src={ilImage} alt='IL' width='50%' /> */}
+                            <TableFormulario3Ante
+                                rows={
+                                    rowsTelaio4Anta3(base)(altezza)('c').slice(
+                                        6,
+                                        7
+                                    )[0]
+                                }
+                            />
+                        </Grid>
+                    </AccordionDetails>
+                </Accordion>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+                <Accordion defaultExpanded={false}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls='3 ANTE "E & F"'
+                    >
+                        <Typography className={classes.heading}>
+                            3 ANTE "E & F"
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Grid
+                            container
+                            direction='column'
+                            justify='center'
+                            alignItems='center'
+                        >
+                            {/* <img src={ilImage} alt='IL' width='50%' /> */}
+                            <TableFormulario3Ante
+                                rows={
+                                    rowsTelaio4Anta3(base)(altezza)('e').slice(
+                                        6,
+                                        7
+                                    )[0]
+                                }
+                            />
+                        </Grid>
+                    </AccordionDetails>
+                </Accordion>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+                <Accordion defaultExpanded={false}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls='4 ANTE "G & H"'
+                    >
+                        <Typography className={classes.heading}>
+                            4 ANTE "G & H"
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Grid
+                            container
+                            direction='column'
+                            justify='center'
+                            alignItems='center'
+                        >
+                            {/* <img src={ilImage} alt='IL' width='50%' /> */}
+                            <TableFormulario4Ante
+                                rows={
+                                    rowsTelaio4Anta4(base)(altezza)('g').slice(
+                                        6,
+                                        7
+                                    )[0]
+                                }
+                            />
+                        </Grid>
+                    </AccordionDetails>
+                </Accordion>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+                <Accordion defaultExpanded={false}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls='4 ANTE "Q & R"'
+                    >
+                        <Typography className={classes.heading}>
+                            4 ANTE "Q & R"
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Grid
+                            container
+                            direction='column'
+                            justify='center'
+                            alignItems='center'
+                        >
+                            {/* <img src={ilImage} alt='IL' width='50%' /> */}
+                            <TableFormulario4Ante
+                                rows={
+                                    rowsTelaio4Anta4(base)(altezza)('q').slice(
                                         6,
                                         7
                                     )[0]
